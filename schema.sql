@@ -210,10 +210,98 @@ INSERT INTO settings (id, company_name, company_tagline, phone, email, address, 
 VALUES (1, 'City Fiber', 'Ultra Fast Fiber Optical Broadband Network', '+880 1711-223344', 'noc@cityfiber.bd', 'House 14, Road 5, Block B, Mirpur-10, Dhaka-1216', 'BDT', 'BDT', 10)
 ON DUPLICATE KEY UPDATE company_name=VALUES(company_name);
 
+-- Seed Roles
+INSERT INTO roles (id, name, description, is_system) VALUES
+(1, 'Admin', 'Super Administrator with unrestricted portal authority', 1),
+(2, 'Manager', 'Operations Manager with view, add, and edit access across all modules', 0),
+(3, 'Operator', 'NOC Operator for subscriber onboarding and line diagnostics', 0),
+(4, 'Accountant', 'Financial officer managing collections, expenses, and payroll', 0),
+(5, 'Field Collector', 'Field agent with field collection sheet and bill receipt access', 0)
+ON DUPLICATE KEY UPDATE name=VALUES(name);
+
+-- Seed Role Permissions (15 Core Modules)
+INSERT INTO role_permissions (role_id, module, can_view, can_add, can_edit, can_delete) VALUES
+(1, 'dashboard', 1, 1, 1, 1),
+(1, 'customers', 1, 1, 1, 1),
+(1, 'import_customers', 1, 1, 1, 1),
+(1, 'billing', 1, 1, 1, 1),
+(1, 'payments', 1, 1, 1, 1),
+(1, 'collection_sheet', 1, 1, 1, 1),
+(1, 'sms', 1, 1, 1, 1),
+(1, 'investments', 1, 1, 1, 1),
+(1, 'expenses', 1, 1, 1, 1),
+(1, 'employees', 1, 1, 1, 1),
+(1, 'reports', 1, 1, 1, 1),
+(1, 'network_tools', 1, 1, 1, 1),
+(1, 'packages', 1, 1, 1, 1),
+(1, 'settings', 1, 1, 1, 1),
+(1, 'users', 1, 1, 1, 1),
+(2, 'dashboard', 1, 1, 1, 1),
+(2, 'customers', 1, 1, 1, 1),
+(2, 'import_customers', 1, 1, 1, 1),
+(2, 'billing', 1, 1, 1, 1),
+(2, 'payments', 1, 1, 1, 1),
+(2, 'collection_sheet', 1, 1, 1, 1),
+(2, 'sms', 1, 1, 1, 1),
+(2, 'investments', 1, 1, 1, 1),
+(2, 'expenses', 1, 1, 1, 1),
+(2, 'employees', 1, 1, 1, 1),
+(2, 'reports', 1, 1, 1, 1),
+(2, 'network_tools', 1, 1, 1, 1),
+(2, 'packages', 1, 1, 1, 1),
+(2, 'settings', 1, 1, 1, 0),
+(2, 'users', 1, 1, 1, 0),
+(3, 'dashboard', 1, 0, 0, 0),
+(3, 'customers', 1, 1, 1, 0),
+(3, 'import_customers', 1, 1, 0, 0),
+(3, 'billing', 1, 0, 0, 0),
+(3, 'payments', 1, 1, 0, 0),
+(3, 'collection_sheet', 1, 0, 0, 0),
+(3, 'sms', 1, 1, 0, 0),
+(3, 'investments', 0, 0, 0, 0),
+(3, 'expenses', 0, 0, 0, 0),
+(3, 'employees', 0, 0, 0, 0),
+(3, 'reports', 0, 0, 0, 0),
+(3, 'network_tools', 1, 1, 1, 0),
+(3, 'packages', 1, 0, 0, 0),
+(3, 'settings', 0, 0, 0, 0),
+(3, 'users', 0, 0, 0, 0),
+(4, 'dashboard', 1, 0, 0, 0),
+(4, 'customers', 1, 0, 0, 0),
+(4, 'import_customers', 0, 0, 0, 0),
+(4, 'billing', 1, 1, 1, 0),
+(4, 'payments', 1, 1, 1, 0),
+(4, 'collection_sheet', 1, 0, 0, 0),
+(4, 'sms', 1, 1, 0, 0),
+(4, 'investments', 1, 1, 1, 0),
+(4, 'expenses', 1, 1, 1, 0),
+(4, 'employees', 1, 1, 1, 0),
+(4, 'reports', 1, 0, 0, 0),
+(4, 'network_tools', 0, 0, 0, 0),
+(4, 'packages', 1, 0, 0, 0),
+(4, 'settings', 0, 0, 0, 0),
+(4, 'users', 0, 0, 0, 0),
+(5, 'dashboard', 1, 0, 0, 0),
+(5, 'customers', 1, 0, 0, 0),
+(5, 'import_customers', 0, 0, 0, 0),
+(5, 'billing', 1, 0, 0, 0),
+(5, 'payments', 1, 1, 0, 0),
+(5, 'collection_sheet', 1, 0, 0, 0),
+(5, 'sms', 0, 0, 0, 0),
+(5, 'investments', 0, 0, 0, 0),
+(5, 'expenses', 0, 0, 0, 0),
+(5, 'employees', 0, 0, 0, 0),
+(5, 'reports', 0, 0, 0, 0),
+(5, 'network_tools', 0, 0, 0, 0),
+(5, 'packages', 0, 0, 0, 0),
+(5, 'settings', 0, 0, 0, 0),
+(5, 'users', 0, 0, 0, 0)
+ON DUPLICATE KEY UPDATE can_view=VALUES(can_view), can_add=VALUES(can_add), can_edit=VALUES(can_edit), can_delete=VALUES(can_delete);
+
 -- Seed Default Admin User: Admin / Team0@247
 -- Also password_verify handles password_hash or md5 fallback
-INSERT INTO users (id, username, password, full_name, role)
-VALUES (1, 'Admin', '$2y$10$wN31X2yA2bKxsq5r0G4n7O9jYjF7Jp6VvI/M30jQf0l20bH649LqS', 'ISP Super Administrator', 'Admin')
+INSERT INTO users (id, username, password, full_name, role, role_id)
+VALUES (1, 'Admin', '$2y$10$wN31X2yA2bKxsq5r0G4n7O9jYjF7Jp6VvI/M30jQf0l20bH649LqS', 'ISP Super Administrator', 'Admin', 1)
 ON DUPLICATE KEY UPDATE username=VALUES(username);
 
 -- Seed Zones
