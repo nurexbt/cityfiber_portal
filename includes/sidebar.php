@@ -68,6 +68,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <span class="badge badge-due font-mono sidebar-badge ms-auto" style="font-size:10px;"><?= $due_bills_count ?> Due</span>
                     <?php endif; ?>
                 </a>
+
+                <a href="single_invoice.php" class="nav-link <?= in_array($current_page, ['single_invoice.php', 'manual_invoice.php']) ? 'active' : '' ?>">
+                    <i class="fa-solid fa-file-invoice-dollar text-cyan-400"></i>
+                    <span class="nav-text">Single / Manual Invoice</span>
+                </a>
             <?php endif; ?>
 
             <!-- 5. Customer bill payment receive -->

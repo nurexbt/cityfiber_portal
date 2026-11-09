@@ -169,6 +169,9 @@ if (!$customer) {
         <a href="payment_receive.php" class="btn btn-sm btn-outline-secondary text-slate-300 font-mono text-xs">
             Collections
         </a>
+        <a href="single_invoice.php" class="btn btn-sm btn-outline-cyan font-mono text-xs">
+            <i class="fa-solid fa-plus me-1"></i> Manual Invoice
+        </a>
     </div>
     <div class="d-flex align-items-center gap-2">
         <a href="?<?= !empty($receipt_no) ? 'receipt_no=' . urlencode($receipt_no) : 'bill_number=' . urlencode($bill_number) ?>&format=a4" class="btn btn-sm <?= $format === 'a4' ? 'btn-cyan text-dark' : 'btn-outline-secondary text-slate-300' ?> font-mono text-xs">

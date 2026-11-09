@@ -188,6 +188,9 @@ require_once __DIR__ . '/includes/header.php';
         <a href="collection_sheet.php" class="btn btn-sm btn-outline-secondary font-mono text-xs">
             <i class="fa-solid fa-clipboard-list me-1"></i> Field Sheet
         </a>
+        <a href="single_invoice.php" class="btn btn-sm btn-outline-cyan font-mono text-xs">
+            <i class="fa-solid fa-file-invoice-dollar me-1"></i> Single / Manual Invoice
+        </a>
         <?php if (has_permission('billing', 'add')): ?>
             <button class="btn btn-sm btn-cyan font-mono text-xs" data-bs-toggle="modal" data-bs-target="#generateBulkModal">
                 <i class="fa-solid fa-bolt me-1"></i> Generate Monthly Bills

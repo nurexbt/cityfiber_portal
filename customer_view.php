@@ -75,6 +75,9 @@ foreach ($payments as $p) {
         <p class="text-slate-400 text-xs mb-0">Subscribed since <?= htmlspecialchars($customer['join_date']) ?> • POP: <?= htmlspecialchars($customer['zone_name'] ?: 'Primary Node') ?></p>
     </div>
     <div class="d-flex align-items-center gap-2">
+        <a href="single_invoice.php?customer_id=<?= $customer['id'] ?>" class="btn btn-sm btn-outline-cyan font-mono text-xs">
+            <i class="fa-solid fa-file-invoice me-1"></i> Single Invoice
+        </a>
         <a href="payment_receive.php?customer_id=<?= $customer['id'] ?>" class="btn btn-sm btn-cyan font-mono text-xs">
             <i class="fa-solid fa-receipt me-1"></i> Receive Bill Payment
         </a>
